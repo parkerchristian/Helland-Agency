@@ -1,4 +1,6 @@
+import axios from 'axios';
 import React, { PureComponent } from 'react';
+const API_PATH = 'http://localhost:3000/Helland-Agency/api/forms/index.php';
 
 export default class AutoQuoteForm extends PureComponent {
   state = {
@@ -11,15 +13,20 @@ export default class AutoQuoteForm extends PureComponent {
   handleSubmit = event => {
     event.preventDefault();
     console.log(this.state);
-    // const {
-    //   name,
-    //   email
-    // } = this.state;
+    
+    axios({
+      method: 'post',
+      url: `${API_PATH}`,
+      headers: { 'content-type': 'application/json' },
+      data: this.state
+    })
+      .then(result => {
+        this.setState({
+          mailSent: result.data.sent
+        });
+      })
+      .catch(error => this.setState({ error: error.message }));
 
-    this.setSet({
-      name: '',
-      email: ''
-    });
   }
 
   handleChange = ({ target }) => {
@@ -29,7 +36,7 @@ export default class AutoQuoteForm extends PureComponent {
   render() {
     const { name, email } = this.state;
     return (
-      <form action='#'>
+      <form action='#' method='post'>
         <label>Name:</label>
         <input type='text' name='name' placeholder='Name' value={name} onChange={this.handleChange} />
 

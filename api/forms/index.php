@@ -1,4 +1,8 @@
 <?php
+echo 'hello';
+include_once('classes/sendmail.php');
+include_once('config.php');
+
 header("Access-Control-Allow-Origin: *");
 $rest_json = file_get_contents("php://input");
 $_POST = json_decode($rest_json, true);
@@ -12,7 +16,7 @@ if ($_POST)
 
 	http_response_code(200);
 	$subject = $_POST['name'];
-	$to = "";
+	$to = "hellandp@gmail.com";
 	$from = $_POST['email'];
 
 	// data
