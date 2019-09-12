@@ -15,7 +15,7 @@ class Sender
     public function __construct($sendTo, $sendFrom = null, $subject, $message)
     {
         $this->sendTo = $sendTo;
-        $this->sendFrom = ($sendFrom) ? $sendFrom : 'myemail@gmail.com';
+        $this->sendFrom = ($sendFrom) ? $sendFrom : 'hellandp@gmail.com';
         $this->subject = $subject;
         $this->message = $message;
     }

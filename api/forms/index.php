@@ -4,6 +4,11 @@ include_once('classes/sendmail.php');
 include_once('config.php');
 
 header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, PUT, POST, DELETE, HEAD");
+header("Access-Control-Max-Age: 1000");
+header("Access-Control-Allow-Headers: x-requested-with, Content-Type, origin, authorization, accept, client-security-token");
+header("Access-Control-Expose-Headers: *");
+header("Content-Type: application/json");
 $rest_json = file_get_contents("php://input");
 $_POST = json_decode($rest_json, true);
 
